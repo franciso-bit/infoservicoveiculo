@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Depoimentos e Presentes | Mundo Cerealista</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --verde-escuro: #2E7D32;
+            --verde-medio: #4CAF50;
+            --verde-claro: #E8F5E9;
+            --bege: #F5F0E1;
+            --marrom: #5D4037;
+            --cinza-texto: #333;
+            --branco: #ffffff;
+            --sombra: 0 4px 15px rgba(0, 0, 0, 0.08);
+            --borda-radius: 16px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background-color: #fafafa;
+            color: var(--cinza-texto);
+            line-height: 1.6;
+        }
+
+        /* ---------- HEADER ---------- */
+        .topo {
+            background: linear-gradient(135deg, var(--verde-escuro) 0%, var(--verde-medio) 100%);
+            color: white;
+            padding: 2.5rem 1rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .topo::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 60%);
+            animation: girar 20s linear infinite;
+        }
+
+        @keyframes girar {
+            to { transform: rotate(360deg); }
+        }
+
+        .topo-conteudo {
+            position: relative;
+            z-index: 1;
+        }
+
+        .topo h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 0.3rem;
+            letter-spacing: -0.5px;
+        }
+
+        .topo .subtitulo {
+            font-size: 1.2rem;
+            font-weight: 300;
+            opacity: 0.9;
+        }
+
+        .topo .desde {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 0.4rem 1.2rem;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            margin-top: 0.8rem;
+            backdrop-filter: blur(5px);
+        }
+
+        /* ---------- SEÇÕES GERAIS ---------- */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem;
+        }
+
+        .secao-titulo {
+            text-align: center;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--verde-escuro);
+            margin-bottom: 0.8rem;
+            position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .secao-titulo::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background: var(--verde-medio);
+            margin: 0.6rem auto 0;
+            border-radius: 2px;
+        }
+
+        .secao-descricao {
+            text-align: center;
+            color: #555;
+            max-width: 650px;
+            margin: 0 auto 2.5rem;
+            font-size: 1.05rem;
+        }
+
+        /* ---------- DEPOIMENTOS ---------- */
+        .depoimentos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.8rem;
+            margin-bottom: 2rem;
+        }
+
+        .card-depoimento {
+            background: var(--branco);
+            border-radius: var(--borda-radius);
+            padding: 1.8rem;
+            box-shadow: var(--sombra);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid rgba(0,0,0,0.03);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .card-depoimento:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+        }
+
+        .avatar {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background: var(--verde-claro);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--verde-escuro);
+            margin-bottom: 1rem;
+            background-size: cover;
+            background-position: center;
+            border: 3px solid var(--verde-medio);
+        }
+
+        .estrelas {
+            color: #FFB300;
+            font-size: 1.1rem;
+            margin-bottom: 0.7rem;
+            letter-spacing: 2px;
+        }
+
+        .nome-cliente {
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: var(--marrom);
+            margin-bottom: 0.2rem;
+        }
+
+        .cidade-cliente {
+            font-size: 0.85rem;
+            color: #888;
+            margin-bottom: 1rem;
+        }
+
+        .texto-depoimento {
+            font-style: italic;
+            color: #444;
+            font-size: 0.95rem;
+            line-height: 1.7;
+            position: relative;
+            padding: 0 0.5rem;
+        }
+
+        .texto-depoimento::before {
+            content: '“';
+            font-size: 3rem;
+            color: var(--verde-claro);
+            position: absolute;
+            left: -10px;
+            top: -15px;
+            font-style: normal;
+            line-height: 1;
+        }
+
+        /* ---------- PRESENTES GANHOS ---------- */
+        .presentes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 1.8rem;
+            margin-bottom: 2rem;
+        }
+
+        .card-presente {
+            background: var(--branco);
+            border-radius: var(--borda-radius);
+            overflow: hidden;
+            box-shadow: var(--sombra);
+            transition: transform 0.3s;
+            border: 1px solid rgba(0,0,0,0.03);
+        }
+
+        .card-presente:hover {
+            transform: scale(1.02);
+        }
+
+        .img-presente {
+            height: 180px;
+            background: linear-gradient(45deg, #FFD54F, #FFB300);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: white;
+            position: relative;
+        }
+
+        .img-presente i {
+            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2));
+        }
+
+        .selo-ganhador {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: var(--verde-medio);
+            color: white;
+            font-size: 0.7rem;
+            font-weight: 700;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .info-presente {
+            padding: 1.2rem;
+            text-align: center;
+        }
+
+        .nome-ganhador {
+            font-weight: 700;
+            color: var(--marrom);
+            font-size: 1.1rem;
+        }
+
+        .presente-descricao {
+            font-size: 0.9rem;
+            color: #555;
+            margin: 0.4rem 0;
+        }
+
+        .data-ganho {
+            font-size: 0.8rem;
+            color: #999;
+        }
+
+        /* ---------- BANNER PROGRAMA ---------- */
+        .banner-programa {
+            background: var(--bege);
+            border-radius: var(--borda-radius);
+            padding: 2rem;
+            margin: 2.5rem 0;
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            box-shadow: var(--sombra);
+        }
+
+        .banner-icone {
+            font-size: 3.5rem;
+            color: var(--verde-medio);
+        }
+
+        .banner-texto h3 {
+            font-size: 1.4rem;
+            color: var(--verde-escuro);
+            margin-bottom: 0.4rem;
+        }
+
+        .banner-texto p {
+            color: #555;
+            font-size: 0.95rem;
+        }
+
+        .btn-saiba-mais {
+            display: inline-block;
+            background: var(--verde-escuro);
+            color: white;
+            padding: 0.7rem 1.8rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background 0.3s;
+            margin-top: 0.8rem;
+        }
+
+        .btn-saiba-mais:hover {
+            background: #1B5E20;
+        }
+
+        /* ---------- FOOTER ---------- */
+        .rodape {
+            background: #263238;
+            color: #CFD8DC;
+            padding: 3rem 1.5rem 0;
+            margin-top: 3rem;
+        }
+
+        .rodape-grid {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            padding-bottom: 2rem;
+        }
+
+        .rodape h4 {
+            color: white;
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        .rodape h4::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 40px;
+            height: 2px;
+            background: var(--verde-medio);
+        }
+
+        .rodape ul {
+            list-style: none;
+        }
+
+        .rodape ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .rodape ul li a {
+            color: #B0BEC5;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+
+        .rodape ul li a:hover {
+            color: var(--verde-claro);
+            text-decoration: underline;
+        }
+
+        .rodape .info-contato p {
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .rodape .info-contato i {
+            color: var(--verde-medio);
+            width: 18px;
+        }
+
+        .rodape-inferior {
+            border-top: 1px solid #37474F;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 1.5rem 0;
+            text-align: center;
+            font-size: 0.85rem;
+            color: #90A4AE;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .redes-sociais a {
+            color: #B0BEC5;
+            margin: 0 0.5rem;
+            font-size: 1.3rem;
+            transition: color 0.3s;
+        }
+
+        .redes-sociais a:hover {
+            color: var(--verde-medio);
+        }
+
+        @media (max-width: 600px) {
+            .topo h1 { font-size: 2rem; }
+            .rodape-inferior { flex-direction: column; text-align: center; }
+            .banner-programa { flex-direction: column; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ==================== TOPO ==================== -->
+    <header class="topo">
+        <div class="topo-conteudo">
+            <h1>🌾 Mundo Cerealista</h1>
+            <p class="subtitulo">Depoimentos reais de quem já transformou a alimentação</p>
+            <span class="desde">Desde 2018</span>
+        </div>
+    </header>
+
+    <main class="container">
+
+        <!-- ==================== DEPOIMENTOS ==================== -->
+        <section>
+            <h2 class="secao-titulo">💬 Depoimentos de Clientes</h2>
+            <p class="secao-descricao">
+                A confiança de milhares de clientes é o nosso maior patrimônio. Veja o que dizem sobre o Mundo Cerealista.
+            </p>
+
+            <div class="depoimentos-grid">
+                <!-- Depoimento 1 -->
+                <div class="card-depoimento">
+                    <div class="avatar" style="background-image: url('https://ui-avatars.com/api/?name=Ana+S&background=E8F5E9&color=2E7D32&size=140');"> </div>
+                    <div class="estrelas">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <div class="nome-cliente">Ana Silva</div>
+                    <div class="cidade-cliente">São Paulo - SP</div>
+                    <p class="texto-depoimento">
+                        Compro no Mundo Cerealista há mais de 2 anos. A qualidade dos grãos e o atendimento são impecáveis. Meu café da manhã nunca mais foi o mesmo!
+                    </p>
+                </div>
+
+                <!-- Depoimento 2 -->
+                <div class="card-depoimento">
+                    <div class="avatar" style="background-image: url('https://ui-avatars.com/api/?name=Carlos+O&background=E8F5E9&color=2E7D32&size=140');"> </div>
+                    <div class="estrelas">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <div class="nome-cliente">Carlos Oliveira</div>
+                    <div class="cidade-cliente">Curitiba - PR</div>
+                    <p class="texto-depoimento">
+                        Além dos produtos excelentes, o programa de fidelidade Mundo Fiel é sensacional. Já ganhei dois kits de presentes e fiquei muito satisfeito!
+                    </p>
+                </div>
+
+                <!-- Depoimento 3 -->
+                <div class="card-depoimento">
+                    <div class="avatar" style="background-image: url('https://ui-avatars.com/api/?name=Marina+L&background=E8F5E9&color=2E7D32&size=140');"> </div>
+                    <div class="estrelas">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <div class="nome-cliente">Marina Lima</div>
+                    <div class="cidade-cliente">Rio de Janeiro - RJ</div>
+                    <p class="texto-depoimento">
+                        Envio super rápido e embalagem cuidadosa. Os cereais vêm sempre fresquinhos. Recomendo para todos que buscam uma alimentação saudável de verdade.
+                    </p>
+                </div>
+
+                <!-- Depoimento 4 -->
+                <div class="card-depoimento">
+                    <div class="avatar" style="background-image: url('https://ui-avatars.com/api/?name=Pedro+H&background=E8F5E9&color=2E7D32&size=140');"> </div>
+                    <div class="estrelas">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <div class="nome-cliente">Pedro Henrique</div>
+                    <div class="cidade-cliente">Belo Horizonte - MG</div>
+                    <p class="texto-depoimento">
+                        O suporte pelo WhatsApp é nota 10! Tive uma dúvida sobre um produto e fui respondido em minutos. Empresa séria e comprometida com o cliente.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== BANNER PROGRAMA DE FIDELIDADE ==================== -->
+        <div class="banner-programa">
+            <div class="banner-icone">
+                <i class="fas fa-gift"></i>
+            </div>
+            <div class="banner-texto">
+                <h3>Programa de Fidelidade Mundo Fiel</h3>
+                <p>Acumule pontos a cada compra e troque por <strong>presentes incríveis</strong>! Kits de produtos, cupons de desconto e muito mais.</p>
+                <a href="#" class="btn-saiba-mais">Saiba mais</a>
+            </div>
+        </div>
+
+        <!-- ==================== PRESENTES GANHOS ==================== -->
+        <section>
+            <h2 class="secao-titulo">🎁 Presentes Ganhos pelos Clientes</h2>
+            <p class="secao-descricao">
+                Veja alguns dos brindes e prêmios que nossos clientes fiéis já resgataram através do programa <strong>Mundo Fiel</strong>.
+            </p>
+
+            <div class="presentes-grid">
+                <!-- Presente 1 -->
+                <div class="card-presente">
+                    <div class="img-presente" style="background: linear-gradient(45deg, #81C784, #4CAF50);">
+                        <i class="fas fa-box-open"></i>
+                        <span class="selo-ganhador">Resgatado</span>
+                    </div>
+                    <div class="info-presente">
+                        <div class="nome-ganhador">Juliana M.</div>
+                        <div class="presente-descricao">Kit Café da Manhã Premium com granolas, mel e frutas secas</div>
+                        <div class="data-ganho">Março/2026</div>
+                    </div>
+                </div>
+
+                <!-- Presente 2 -->
+                <div class="card-presente">
+                    <div class="img-presente" style="background: linear-gradient(45deg, #FFB74D, #FF9800);">
+                        <i class="fas fa-ticket-alt"></i>
+                        <span class="selo-ganhador">Resgatado</span>
+                    </div>
+                    <div class="info-presente">
+                        <div class="nome-ganhador">Ricardo A.</div>
+                        <div class="presente-descricao">Cupom de R$ 100,00 para usar em qualquer compra no site</div>
+                        <div class="data-ganho">Fevereiro/2026</div>
+                    </div>
+                </div>
+
+                <!-- Presente 3 -->
+                <div class="card-presente">
+                    <div class="img-presente" style="background: linear-gradient(45deg, #CE93D8, #AB47BC);">
+                        <i class="fas fa-mug-hot"></i>
+                        <span class="selo-ganhador">Resgatado</span>
+                    </div>
+                    <div class="info-presente">
+                        <div class="nome-ganhador">Fernanda C.</div>
+                        <div class="presente-descricao">Caneca térmica personalizada + 1kg de café gourmet</div>
+                        <div class="data-ganho">Janeiro/2026</div>
+                    </div>
+                </div>
+
+                <!-- Presente 4 -->
+                <div class="card-presente">
+                    <div class="img-presente" style="background: linear-gradient(45deg, #4FC3F7, #0288D1);">
+                        <i class="fas fa-seedling"></i>
+                        <span class="selo-ganhador">Resgatado</span>
+                    </div>
+                    <div class="info-presente">
+                        <div class="nome-ganhador">Lucas T.</div>
+                        <div class="presente-descricao">Cesta de produtos orgânicos sortidos + livro de receitas saudáveis</div>
+                        <div class="data-ganho">Dezembro/2025</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ==================== RODAPÉ INSTITUCIONAL ==================== -->
+    <footer class="rodape">
+        <div class="rodape-grid">
+            <!-- Institucional -->
+            <div>
+                <h4>Institucional</h4>
+                <ul>
+                    <li><a href="#">Sobre nós</a></li>
+                    <li><a href="#">Mundo Cerealista é confiável?</a></li>
+                    <li><a href="#">Sua Compra Segura</a></li>
+                    <li><a href="#">Política de Frete</a></li>
+                    <li><a href="#">Política de Troca e Devolução</a></li>
+                    <li><a href="#">Trabalhe Conosco</a></li>
+                </ul>
+            </div>
+
+            <!-- Programas e vantagens -->
+            <div>
+                <h4>Vantagens</h4>
+                <ul>
+                    <li><a href="#">Desconto Redes Sociais</a></li>
+                    <li><a href="#">Cupons de Desconto</a></li>
+                    <li><a href="#">Política de Atacado</a></li>
+                    <li><a href="#">Programa de Fidelidade | Mundo Fiel</a></li>
+                    <li><a href="#">Nossos Endereços</a></li>
+                    <li><a href="#">Notícias</a></li>
+                </ul>
+            </div>
+
+            <!-- Atendimento -->
+            <div class="info-contato">
+                <h4>Atendimento</h4>
+                <p><i class="fas fa-phone-alt"></i> (11) 2337-1245</p>
+                <p><i class="fab fa-whatsapp"></i> 11 99350-0214</p>
+                <p><i class="fas fa-envelope"></i> sac@mundocerealista.com.br</p>
+                <p><i class="fas fa-clock"></i> Seg a Sex das 9h às 17h</p>
+            </div>
+
+            <!-- Redes sociais rápidas -->
+            <div>
+                <h4>Redes Sociais</h4>
+                <p style="font-size:0.9rem; margin-bottom:0.8rem;">Acompanhe nossas novidades:</p>
+                <div class="redes-sociais" style="justify-content: flex-start;">
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="rodape-inferior">
+            <span>🌾 <strong>Mundo Cerealista</strong> &copy; 2018 - 2026. Todos os direitos reservados.</span>
+            <span>CNPJ: 31.217.101/0001-42</span>
+        </div>
+    </footer>
+
+</body>
+</html>
