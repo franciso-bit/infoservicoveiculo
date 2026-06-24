@@ -33,7 +33,7 @@
 
         /* ---------- HEADER ---------- */
         .topo {
-            background: linear-gradient(135deg, var(--verde-escuro) 0%, var(--verde-medio) 100%);
+            background: linear-gradient(135deg, #2E7D32 0%, #4CAF50 100%);
             color: white;
             padding: 2.5rem 1rem;
             text-align: center;
@@ -159,8 +159,6 @@
             font-weight: 700;
             color: var(--verde-escuro);
             margin-bottom: 1rem;
-            background-size: cover;
-            background-position: center;
             border: 3px solid var(--verde-medio);
         }
 
@@ -181,7 +179,16 @@
         .cidade-cliente {
             font-size: 0.85rem;
             color: #888;
-            margin-bottom: 1rem;
+            margin-bottom: 0.2rem;
+        }
+
+        .selo-verificado {
+            font-size: 0.75rem;
+            background: #E8F5E9;
+            color: #2E7D32;
+            padding: 0.2rem 0.6rem;
+            border-radius: 20px;
+            margin-bottom: 0.8rem;
         }
 
         .texto-depoimento {
@@ -269,6 +276,13 @@
             font-size: 0.9rem;
             color: #555;
             margin: 0.4rem 0;
+        }
+
+        .aviso-presente {
+            font-size: 0.75rem;
+            color: #888;
+            margin-top: 0.3rem;
+            font-style: italic;
         }
 
         .data-ganho {
@@ -446,12 +460,13 @@
             <div class="depoimentos-grid">
                 <!-- Depoimento 1 -->
                 <div class="card-depoimento">
-                    <div class="avatar" style="background-image: url('https://ui-avatars.com/api/?name=Ana+S&background=E8F5E9&color=2E7D32&size=140');"> </div>
+                    <div class="avatar">AS</div>
                     <div class="estrelas">
                         <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
                     </div>
                     <div class="nome-cliente">Ana Silva</div>
                     <div class="cidade-cliente">São Paulo - SP</div>
+                    <span class="selo-verificado"><i class="fas fa-check-circle"></i> Cliente verificado</span>
                     <p class="texto-depoimento">
                         Compro no Mundo Cerealista há mais de 2 anos. A qualidade dos grãos e o atendimento são impecáveis. Meu café da manhã nunca mais foi o mesmo!
                     </p>
@@ -459,12 +474,13 @@
 
                 <!-- Depoimento 2 -->
                 <div class="card-depoimento">
-                    <div class="avatar" style="background-image: url('https://ui-avatars.com/api/?name=Carlos+O&background=E8F5E9&color=2E7D32&size=140');"> </div>
+                    <div class="avatar">CO</div>
                     <div class="estrelas">
                         <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
                     </div>
                     <div class="nome-cliente">Carlos Oliveira</div>
                     <div class="cidade-cliente">Curitiba - PR</div>
+                    <span class="selo-verificado"><i class="fas fa-check-circle"></i> Cliente verificado</span>
                     <p class="texto-depoimento">
                         Além dos produtos excelentes, o programa de fidelidade Mundo Fiel é sensacional. Já ganhei dois kits de presentes e fiquei muito satisfeito!
                     </p>
@@ -472,12 +488,13 @@
 
                 <!-- Depoimento 3 -->
                 <div class="card-depoimento">
-                    <div class="avatar" style="background-image: url('https://ui-avatars.com/api/?name=Marina+L&background=E8F5E9&color=2E7D32&size=140');"> </div>
+                    <div class="avatar">ML</div>
                     <div class="estrelas">
-                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
                     </div>
                     <div class="nome-cliente">Marina Lima</div>
                     <div class="cidade-cliente">Rio de Janeiro - RJ</div>
+                    <span class="selo-verificado"><i class="fas fa-check-circle"></i> Cliente verificado</span>
                     <p class="texto-depoimento">
                         Envio super rápido e embalagem cuidadosa. Os cereais vêm sempre fresquinhos. Recomendo para todos que buscam uma alimentação saudável de verdade.
                     </p>
@@ -485,12 +502,13 @@
 
                 <!-- Depoimento 4 -->
                 <div class="card-depoimento">
-                    <div class="avatar" style="background-image: url('https://ui-avatars.com/api/?name=Pedro+H&background=E8F5E9&color=2E7D32&size=140');"> </div>
+                    <div class="avatar">PH</div>
                     <div class="estrelas">
                         <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
                     </div>
                     <div class="nome-cliente">Pedro Henrique</div>
                     <div class="cidade-cliente">Belo Horizonte - MG</div>
+                    <span class="selo-verificado"><i class="fas fa-check-circle"></i> Cliente verificado</span>
                     <p class="texto-depoimento">
                         O suporte pelo WhatsApp é nota 10! Tive uma dúvida sobre um produto e fui respondido em minutos. Empresa séria e comprometida com o cliente.
                     </p>
@@ -505,8 +523,8 @@
             </div>
             <div class="banner-texto">
                 <h3>Programa de Fidelidade Mundo Fiel</h3>
-                <p>Acumule pontos a cada compra e troque por <strong>presentes incríveis</strong>! Kits de produtos, cupons de desconto e muito mais.</p>
-                <a href="#" class="btn-saiba-mais">Saiba mais</a>
+                <p>Acumule pontos a cada compra e troque por <strong>presentes especiais</strong>! Kits de produtos, cupons de desconto e muito mais. Sujeito a regulamento.</p>
+                <a href="#" class="btn-saiba-mais">Conhecer programa</a>
             </div>
         </div>
 
@@ -514,7 +532,7 @@
         <section>
             <h2 class="secao-titulo">🎁 Presentes Ganhos pelos Clientes</h2>
             <p class="secao-descricao">
-                Veja alguns dos brindes e prêmios que nossos clientes fiéis já resgataram através do programa <strong>Mundo Fiel</strong>.
+                Veja alguns dos brindes que nossos clientes fiéis já resgataram através do programa <strong>Mundo Fiel</strong>.
             </p>
 
             <div class="presentes-grid">
@@ -526,7 +544,8 @@
                     </div>
                     <div class="info-presente">
                         <div class="nome-ganhador">Juliana M.</div>
-                        <div class="presente-descricao">Kit Café da Manhã Premium com granolas, mel e frutas secas</div>
+                        <div class="presente-descricao">Kit Café da Manhã Premium</div>
+                        <div class="aviso-presente">*Itens ilustrativos. Sujeito a disponibilidade.</div>
                         <div class="data-ganho">Março/2026</div>
                     </div>
                 </div>
@@ -539,7 +558,8 @@
                     </div>
                     <div class="info-presente">
                         <div class="nome-ganhador">Ricardo A.</div>
-                        <div class="presente-descricao">Cupom de R$ 100,00 para usar em qualquer compra no site</div>
+                        <div class="presente-descricao">Cupom de R$ 100,00</div>
+                        <div class="aviso-presente">*Válido para compras acima de R$ 200,00.</div>
                         <div class="data-ganho">Fevereiro/2026</div>
                     </div>
                 </div>
@@ -552,7 +572,8 @@
                     </div>
                     <div class="info-presente">
                         <div class="nome-ganhador">Fernanda C.</div>
-                        <div class="presente-descricao">Caneca térmica personalizada + 1kg de café gourmet</div>
+                        <div class="presente-descricao">Caneca Térmica + 1kg de Café Gourmet</div>
+                        <div class="aviso-presente">*Cores e modelos podem variar.</div>
                         <div class="data-ganho">Janeiro/2026</div>
                     </div>
                 </div>
@@ -565,7 +586,8 @@
                     </div>
                     <div class="info-presente">
                         <div class="nome-ganhador">Lucas T.</div>
-                        <div class="presente-descricao">Cesta de produtos orgânicos sortidos + livro de receitas saudáveis</div>
+                        <div class="presente-descricao">Cesta de Orgânicos Sortidos</div>
+                        <div class="aviso-presente">*Composição da cesta conforme safra.</div>
                         <div class="data-ganho">Dezembro/2025</div>
                     </div>
                 </div>
@@ -612,7 +634,7 @@
                 <p><i class="fas fa-clock"></i> Seg a Sex das 9h às 17h</p>
             </div>
 
-            <!-- Redes sociais rápidas -->
+            <!-- Redes sociais e links legais -->
             <div>
                 <h4>Redes Sociais</h4>
                 <p style="font-size:0.9rem; margin-bottom:0.8rem;">Acompanhe nossas novidades:</p>
@@ -620,6 +642,11 @@
                     <a href="#"><i class="fab fa-instagram"></i></a>
                     <a href="#"><i class="fab fa-facebook"></i></a>
                     <a href="#"><i class="fab fa-whatsapp"></i></a>
+                </div>
+                <!-- Links para as páginas legais (separadas) -->
+                <div style="margin-top: 1.2rem;">
+                    <a href="politica-de-privacidade.html" style="color:#B0BEC5; font-size:0.85rem; text-decoration: none;">Política de Privacidade</a><br>
+                    <a href="termos-de-uso.html" style="color:#B0BEC5; font-size:0.85rem; text-decoration: none;">Termos de Uso</a>
                 </div>
             </div>
         </div>
